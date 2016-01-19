@@ -76,6 +76,26 @@ class OracleOfBacon
       @type = :error
       @data = 'Unauthorized access'
     end
+
+    def parse_spellcheck_response
+      @type = :spellcheck
+      @data = []
+      @doc.xpath('//match').each { |item| @data.push(item.content) }
+    end
+
+    def parse_unknown_response
+      @type = :unknown
+      @data = 'unknown response type'
+    end
+
+    def parse_graph_response
+      @type = :graph
+      @data_actor, @data_movie = [], []
+      @doc.xpath('//actor').each { |item| @data_actor.push(item.content) }
+      @doc.xpath('//movie').each { |item| @data_movie.push(item.content) }
+      @data = @data_actor.zip(@data_movie).flatten.compact
+    end
+
   end
 end
 
