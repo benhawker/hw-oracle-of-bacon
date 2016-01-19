@@ -28,6 +28,7 @@ class OracleOfBacon
   def initialize(api_key='')
     @from = 'Kevin Bacon'
     @to = 'Kevin Bacon'
+    @api_key = api_key
   end
 
   def find_connections
