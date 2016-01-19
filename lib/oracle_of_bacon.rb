@@ -79,21 +79,19 @@ class OracleOfBacon
 
     def parse_spellcheck_response
       @type = :spellcheck
-      @data = []
-      @doc.xpath('//match').each { |item| @data.push(item.content) }
+      @data = @doc.xpath('//match').map(&:text)
     end
 
     def parse_unknown_response
       @type = :unknown
-      @data = 'unknown response type'
+      @data = 'Unknown response type'
     end
 
     def parse_graph_response
       @type = :graph
-      @data_actor, @data_movie = [], []
-      @doc.xpath('//actor').each { |item| @data_actor.push(item.content) }
-      @doc.xpath('//movie').each { |item| @data_movie.push(item.content) }
-      @data = @data_actor.zip(@data_movie).flatten.compact
+      actors = @doc.xpath('//actor')
+      movies = @doc.xpath('//movie')
+      @data = actors.zip(movies).flatten.compact.map(&:text)
     end
 
   end
