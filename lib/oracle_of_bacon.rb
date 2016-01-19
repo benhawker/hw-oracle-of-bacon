@@ -29,6 +29,7 @@ class OracleOfBacon
     @from = 'Kevin Bacon'
     @to = 'Kevin Bacon'
     @api_key = api_key
+    @uri = nil
   end
 
   def find_connections
