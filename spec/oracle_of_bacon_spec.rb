@@ -7,7 +7,7 @@ require 'rspec/collection_matchers'
 
 describe OracleOfBacon do
   before(:all) { FakeWeb.allow_net_connect = false }
-  describe 'instance', :pending => true do
+  describe 'instance' do
     before(:each) { @orb = OracleOfBacon.new('fake_api_key') }
     describe 'when new' do
       subject { @orb }
@@ -101,4 +101,4 @@ describe OracleOfBacon do
   end
 
 end
-      
+
